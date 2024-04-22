@@ -1,5 +1,5 @@
-import { Textarea } from "@/components/ui/textarea";
 import Confetti from "@/components/confetti";
+import WishArea from "@/app/(main)/main/wish-area";
 
 export default function Main() {
   return (
@@ -16,23 +16,7 @@ export default function Main() {
             Wishing you a fantastic day filled with the people and things you
             love the most.
           </p>
-          <Textarea
-            className="
-            w-full
-             max-w-md
-             p-3
-             mx-auto
-             bg-opacity-25
-             bg-black
-             text-white
-             placeholder:text-gray-200
-             focus-visible:ring-0
-             h-32
-             hover:scale-110
-             transition
-             "
-            placeholder="Make your heartfelt birthday wish here... "
-          />
+          <WishArea />
         </div>
       </main>
     </>
