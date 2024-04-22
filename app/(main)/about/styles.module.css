@@ -1,0 +1,19 @@
+.text {
+  @apply mx-auto max-w-3xl flex flex-col justify-center min-h-screen p-4 text-white space-y-6
+}
+
+.text h1, .text h2, .text h3, .text h4, .text h5, .text h6 {
+  @apply tracking-tighter
+}
+
+.text h1 {
+  @apply text-4xl sm:text-6xl font-extrabold
+}
+
+.text h2 {
+  @apply text-3xl sm:text-5xl font-bold
+}
+
+.text p {
+  @apply md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed
+}

@@ -13,6 +13,15 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      animation: {
+        "scaling-110": "scaling-110 2s ease-in-out infinite",
+      },
+      keyframes: {
+        "scaling-110": {
+          "0%, 100%": { transform: "scale(1)" },
+          "50%": { transform: "scale(1.10)" },
+        },
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
