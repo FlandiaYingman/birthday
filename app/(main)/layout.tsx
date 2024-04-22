@@ -3,6 +3,8 @@ import { Cake } from "lucide-react";
 import { SiGithub } from "@icons-pack/react-simple-icons";
 import Link from "next/link";
 
+const GitHubUrl = "https://github.com/FlandiaYingman/birthday";
+
 export default function Layout({
   children,
 }: Readonly<{
@@ -24,7 +26,7 @@ export default function Layout({
             <Link className="text-white hover:underline ml-auto" href="/about">
               About
             </Link>
-            <Link className="text-white hover:underline" href="#">
+            <Link className="text-white hover:underline" href={GitHubUrl}>
               <SiGithub className="w-8 h-8 text-white" />
             </Link>
           </div>
