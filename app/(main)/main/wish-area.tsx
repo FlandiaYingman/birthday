@@ -15,7 +15,9 @@ export default function WishArea() {
         "max-w-md h-36",
         "bg-black bg-opacity-25 text-white placeholder:text-gray-200",
         "focus-visible:ring-0",
-        "hover:scale-110 transition",
+        "hover:scale-110",
+        "focus:scale-110",
+        "transition",
       )}
       placeholder="Make your heartfelt birthday wish here... "
       onChange={(e) => setWish(wish.concat(e.target.value))}
