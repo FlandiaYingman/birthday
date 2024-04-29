@@ -20,7 +20,10 @@ export default function WishArea() {
         "transition",
       )}
       placeholder="Make your heartfelt birthday wish here... "
-      onChange={(e) => setWish(wish.concat(e.target.value))}
+      onChange={async (e) => {
+        setWish(wish.concat(e.target.value));
+        await submitWish(uuid.current, wish);
+      }}
       onBlur={async () => await submitWish(uuid.current, wish)}
     />
   );
