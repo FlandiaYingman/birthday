@@ -11,7 +11,7 @@ export default function Main() {
           Happy Birthday, Janis! <br />
           🎉🎂🎈🎁🎊
         </h1>
-        <p className=" md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400 text-white animate-scaling-110">
+        <p className="md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed text-white animate-scaling-110">
           Wishing you a fantastic day filled with the people and things you love
           the most.
         </p>

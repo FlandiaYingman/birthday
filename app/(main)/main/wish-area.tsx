@@ -14,6 +14,8 @@ export default function WishArea() {
       className={cn(
         "max-w-md h-36",
         "bg-black bg-opacity-25 text-white placeholder:text-gray-200",
+        "dark:bg-black dark:bg-opacity-25 dark:text-white dark:placeholder:text-gray-200",
+        "dark:border-gray-200 dark:ring-offset-white dark:dark:focus-visible:ring-0",
         "focus-visible:ring-0",
         "hover:scale-110",
         "focus:scale-110",
