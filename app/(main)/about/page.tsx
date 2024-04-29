@@ -12,10 +12,10 @@ export default function About() {
 
         <h2>Janis, </h2>
         <p>
-          Thanks for being a great friend and for always being there for me. I
-          really appreciate that I have such a great friend like you. As always,
-          I'm here for you too. I hope that you enjoy this website and have a
-          great day!
+          Thanks for being a great friend and for always being there for me. As
+          always, I'm here for you too. I really appreciate that I have such a
+          great friend like you. I hope that you enjoy this website and have a
+          great birthday!
         </p>
       </main>
     </>
