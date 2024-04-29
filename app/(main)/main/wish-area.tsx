@@ -12,7 +12,7 @@ export default function WishArea() {
   return (
     <Textarea
       className={cn(
-        "max-w-md h-48",
+        "max-w-md h-36",
         "bg-black bg-opacity-25 text-white placeholder:text-gray-200",
         "focus-visible:ring-0",
         "hover:scale-110 transition",
