@@ -19,7 +19,7 @@ const ibm_plex_sans = IBM_Plex_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Happy Birthday! 🎉🎂🎈🎁🎊",
+  title: "Happy Birthday, Janis! 🎉🎂🎈🎁🎊",
   description: "Happy Birthday to you! 🎉🎂🎈🎁🎊",
 };
 
