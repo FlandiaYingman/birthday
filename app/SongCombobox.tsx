@@ -45,7 +45,7 @@ export const SongCombobox: FC<ComboboxProps> = ({
           variant="noShadow"
           role="combobox"
           aria-expanded={open}
-          className="w-full justify-between md:max-w-[200px]"
+          className="w-full max-w-[200px] justify-between"
         >
           {value
             ? items.find((item) => item.value === value)?.label

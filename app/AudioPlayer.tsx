@@ -9,6 +9,7 @@ import { PauseIcon } from "@/components/ui/pause";
 import { VolumeIcon } from "@/components/ui/volume";
 import { cn } from "@/lib/utils";
 import { SongCombobox } from "@/app/SongCombobox";
+import { motion } from "motion/react";
 
 // https://stackoverflow.com/questions/62846043/react-js-useeffect-with-window-resize-event-listener-not-working
 function useWindowSize() {
@@ -70,9 +71,14 @@ const Songs = [
     label: "Jazz",
     value: "lounge-jazz-elevator-music-324902.mp3",
   },
+  {
+    label: "Janis's Favorite",
+    value: "1127忍者-比爾的歌 - Bomb比爾.mp3",
+  },
 ];
 
 export const AudioPlayer: FC = () => {
+  const [loading, setLoading] = useState(true);
   const [playing, setPlaying] = useState(false);
   const [volume, setVolume] = useState([1]);
 
@@ -106,12 +112,6 @@ export const AudioPlayer: FC = () => {
     console.log("AudioPlayer mounted, creating context");
     return new AudioContext();
   }, []);
-  useEffect(() => {
-    return () => {
-      console.log("AudioPlayer unmounted, closing context");
-      void context.close();
-    };
-  }, [context]);
 
   // Create audio nodes
   const [media, analyzer] = useMemo(() => {
@@ -119,7 +119,7 @@ export const AudioPlayer: FC = () => {
 
     console.log("AudioPlayer mounted, creating media node");
 
-    const audio = new Audio(song);
+    const audio = new Audio(`/${song}`);
     const node = context.createMediaElementSource(audio);
 
     const analyzer = context.createAnalyser();
@@ -154,6 +154,9 @@ export const AudioPlayer: FC = () => {
     const updateVolume = () => {
       setVolume([media.volume]);
     };
+    const updateLoading = () => {
+      setLoading(false);
+    };
 
     updateCurrent();
     updateDuration();
@@ -161,11 +164,13 @@ export const AudioPlayer: FC = () => {
     media.addEventListener("loadedmetadata", updateDuration);
     media.addEventListener("timeupdate", updateCurrent);
     media.addEventListener("volumechange", updateVolume);
+    media.addEventListener("canplay", updateLoading);
 
     return () => {
       media.removeEventListener("loadedmetadata", updateDuration);
       media.removeEventListener("timeupdate", updateCurrent);
       media.removeEventListener("volumechange", updateVolume);
+      media.removeEventListener("canplay", updateLoading);
     };
   }, [media]);
 
@@ -220,20 +225,30 @@ export const AudioPlayer: FC = () => {
   }, [render]);
 
   return (
-    <Card className="gap-2 p-6 pb-5">
+    <Card className="w-sm max-w-sm gap-2 p-6 pb-5 lg:w-lg lg:max-w-lg">
       <Card
         ref={canvasParentRef}
-        className="mb-3 h-60 w-md justify-center bg-black p-0 !shadow-none"
+        className="mb-3 h-60 w-full justify-center bg-black p-0 !shadow-none"
       >
-        <div
+        <motion.div
           className={cn(
-            "flex h-full w-full flex-col items-center justify-center gap-2",
+            "flex h-full w-full flex-col items-center justify-center gap-2 px-2",
             playing ? "hidden" : "",
           )}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0 }}
         >
-          <span>Press ▶ key to begin...</span>
-          <SongCombobox items={Songs} value={song} onValueChange={setSong} />
-        </div>
+          <span className="text-white">Press ▶ key to begin...</span>
+          <SongCombobox
+            items={Songs}
+            value={song}
+            onValueChange={(song) => {
+              setLoading(true);
+              setSong(song);
+            }}
+          />
+        </motion.div>
         <canvas className={playing ? "" : "hidden"} ref={canvasRef} />
       </Card>
       <div className="flex flex-col gap-1">
@@ -250,9 +265,12 @@ export const AudioPlayer: FC = () => {
         </div>
       </div>
       <div className="flex flex-row justify-between">
-        <Button onClick={() => setPlaying(!playing)}>
+        <Button
+          onClick={() => setPlaying(!playing)}
+          className={loading ? "animate-pulse" : ""}
+        >
+          {/*Note: size property seems not working...*/}
           {!playing ? (
-            // Note: size property seems not working...
             <PlayIcon className="scale-125" />
           ) : (
             <PauseIcon className="scale-125" />
