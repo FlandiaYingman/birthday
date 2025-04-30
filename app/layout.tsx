@@ -5,6 +5,8 @@ import React, { ReactNode } from "react";
 import FavIcon from "@/public/icon.svg";
 import DarkFavIcon from "@/public/icon-dark.svg";
 import { Toaster } from "@/components/ui/sonner";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 const fusionPixel = localFont({
   src: "fonts/fusion-pixel-10px-proportional-zh_hant.woff2",
@@ -40,6 +42,8 @@ export default function RootLayout({
       >
         {children}
         <Toaster />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
